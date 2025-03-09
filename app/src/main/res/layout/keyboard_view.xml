@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.zhiyanai.keyboard.ZhiYanKeyboardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keyboard_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="#F5F5F5"
+    android:keyPreviewLayout="@layout/key_preview"
+    android:keyPreviewOffset="-20dp"
+    android:keyPreviewHeight="50dp"
+    android:keyBackground="@drawable/key_background"
+    android:keyTextColor="#333333"
+    android:keyTextSize="18sp"
+    android:labelTextSize="16sp"
+    android:shadowColor="#33000000"
+    android:shadowRadius="1.0"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp" />

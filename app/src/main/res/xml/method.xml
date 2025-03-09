@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<input-method xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="com.example.zhiyanai.keyboard.ZhiYanSettingsActivity"
+    android:supportsSwitchingToNextInputMethod="true">
+
+    <!-- 声明输入法支持的子类型 -->
+    <subtype
+        android:icon="@mipmap/ic_launcher"
+        android:imeSubtypeLocale="zh_CN"
+        android:imeSubtypeMode="keyboard"
+        android:label="@string/ime_name" />
+</input-method>
