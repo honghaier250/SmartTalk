@@ -413,13 +413,22 @@ public class ZhiYanInputMethodService extends InputMethodService {
             public void onSuggestionSelected(String suggestion) {
                 // 提交选中的AI建议
                 InputConnection ic = getCurrentInputConnection();
-                if (ic != null) {
+                if (ic != null && suggestion != null) {
                     // 删除当前文本
                     ic.deleteSurroundingText(currentText.length(), 0);
                     // 提交新文本
                     ic.commitText(suggestion, 1);
                 }
                 
+                // 隐藏AI建议视图
+                hideAISuggestionsView();
+            }
+        });
+        
+        // 设置关闭按钮监听器
+        aiSuggestionsView.setOnCloseListener(new AISuggestionsView.OnCloseListener() {
+            @Override
+            public void onClose() {
                 // 隐藏AI建议视图
                 hideAISuggestionsView();
             }

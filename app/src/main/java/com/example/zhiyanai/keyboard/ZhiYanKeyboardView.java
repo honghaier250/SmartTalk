@@ -30,7 +30,7 @@ public class ZhiYanKeyboardView extends KeyboardView {
         super.onDraw(canvas);
         // 自定义键盘绘制
         setPreviewEnabled(true); // 启用按键预览
-        setPadding(0, 5, 0, 5); // 设置内边距
+        // setPadding(0, 5, 0, 5); // 设置内边距
     }
     
     /**

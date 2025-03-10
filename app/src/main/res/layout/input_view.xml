@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- 候选词视图容器 -->
+    <FrameLayout
+        android:id="@+id/candidates_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <!-- 键盘视图 -->
+    <com.example.zhiyanai.keyboard.ZhiYanKeyboardView
+        android:id="@+id/keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:keyPreviewLayout="@layout/key_preview"
+        android:keyPreviewOffset="-12dp"
+        android:keyPreviewHeight="40dp"
+        android:keyBackground="@drawable/key_background"
+        android:keyTextColor="#333333"
+        android:keyTextSize="18sp"
+        android:labelTextSize="16sp"
+        android:shadowColor="#33000000"
+        android:shadowRadius="1.0"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp" />
+
+</LinearLayout> 

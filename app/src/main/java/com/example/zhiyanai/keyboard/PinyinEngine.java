@@ -286,11 +286,11 @@ public class PinyinEngine {
         Log.d(TAG, "更新候选词，当前拼音: " + pinyin);
         
         if (!pinyin.isEmpty()) {
-            // 1. 添加词组匹配
-            addPhraseMatches(pinyin);
-            
-            // 2. 添加单字完全匹配
+            // 1. 添加单字完全匹配（调整为第一位置）
             addSingleCharMatches(pinyin);
+            
+            // 2. 添加词组匹配（调整为第二位置）
+            addPhraseMatches(pinyin);
             
             // 3. 添加拼音前缀匹配
             addPrefixMatches(pinyin);
@@ -567,7 +567,7 @@ public class PinyinEngine {
         addPinyinMapping("fa", "发", "法", "罚");
         addPinyinMapping("fan", "反", "饭", "范");
         addPinyinMapping("fang", "方", "放", "房");
-        addPinyinMapping("gao", "高", "搞", "告");
+        addPinyinMapping("gao", "高", "搞", "搞");
         addPinyinMapping("ge", "个", "各", "革");
         addPinyinMapping("gong", "工", "公", "功");
         addPinyinMapping("hao", "好", "号", "浩");

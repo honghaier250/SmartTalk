@@ -18,6 +18,7 @@ public class AISuggestionsView extends LinearLayout {
     
     private LinearLayout suggestionsContainer;
     private OnSuggestionSelectedListener listener;
+    private OnCloseListener closeListener;
     
     public AISuggestionsView(Context context) {
         super(context);
@@ -40,6 +41,17 @@ public class AISuggestionsView extends LinearLayout {
         
         // 获取建议容器
         suggestionsContainer = findViewById(R.id.suggestions_container);
+        
+        // 设置关闭按钮点击事件
+        findViewById(R.id.btn_close).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (closeListener != null) {
+                    // 触发关闭事件
+                    closeListener.onClose();
+                }
+            }
+        });
     }
     
     /**
@@ -80,9 +92,24 @@ public class AISuggestionsView extends LinearLayout {
     }
     
     /**
+     * 设置关闭按钮监听器
+     * @param listener 监听器
+     */
+    public void setOnCloseListener(OnCloseListener listener) {
+        this.closeListener = listener;
+    }
+    
+    /**
      * 建议选择监听器接口
      */
     public interface OnSuggestionSelectedListener {
         void onSuggestionSelected(String suggestion);
     }
-} 
+    
+    /**
+     * 关闭按钮监听器接口
+     */
+    public interface OnCloseListener {
+        void onClose();
+    }
+}

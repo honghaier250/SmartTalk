@@ -15,7 +15,7 @@
     android:labelTextSize="16sp"
     android:shadowColor="#33000000"
     android:shadowRadius="1.0"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
     android:paddingStart="8dp"
     android:paddingEnd="8dp" />

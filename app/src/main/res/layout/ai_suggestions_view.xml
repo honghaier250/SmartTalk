@@ -2,32 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:elevation="4dp">
 
-    <!-- 标题 -->
-    <TextView
+    <!-- 标题栏 -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E0F7FA"
-        android:padding="8dp"
-        android:text="AI优化建议"
-        android:textColor="#0277BD"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:background="@drawable/ai_title_background"
+        android:padding="10dp">
+
+        <!-- 标题 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="AI优化建议"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- 关闭按钮 -->
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="关闭"
+            android:src="@drawable/ic_close" />
+    </RelativeLayout>
 
     <!-- 建议列表容器 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF">
+        android:background="#F5F9FF">
 
         <LinearLayout
             android:id="@+id/suggestions_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp" />
+            android:padding="12dp" />
 
     </ScrollView>
 
-</LinearLayout> 
+</LinearLayout>
