@@ -34,7 +34,10 @@ enum class SkbMenuMode {
     CloseSKB,
     Emojicon,
     Emoticon,
-    LockClipBoard;
+    LockClipBoard,
+    
+    //添加AI功能的枚举值,这是实现AI功能入口的第一步 
+    AI;
 
     companion object : ManagedPreference.StringLikeCodec<SkbMenuMode> {
         override fun decode(raw: String): SkbMenuMode =

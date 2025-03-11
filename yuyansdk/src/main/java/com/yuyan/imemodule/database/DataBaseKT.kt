@@ -87,6 +87,7 @@ abstract class DataBaseKT : RoomDatabase() {
                 val skbFuns = listOf(
                     SkbFun(name = SkbMenuMode.ClipBoard.name, isKeep = 1),
                     SkbFun(name = SkbMenuMode.Emojicon.name, isKeep = 1),
+                    SkbFun(name = SkbMenuMode.AI.name, isKeep = 1),
 
                     SkbFun(name = SkbMenuMode.Emojicon.name, isKeep = 0, position = 0),
                     SkbFun(name = SkbMenuMode.SwitchKeyboard.name, isKeep = 0, position = 1),
@@ -101,8 +102,12 @@ abstract class DataBaseKT : RoomDatabase() {
                     SkbFun(name = SkbMenuMode.Mnemonic.name, isKeep = 0, position = 10),
                     SkbFun(name = SkbMenuMode.FloatKeyboard.name, isKeep = 0, position = 11),
                     SkbFun(name = SkbMenuMode.FlowerTypeface.name, isKeep = 0, position = 12),
-                    SkbFun(name = SkbMenuMode.Custom.name, isKeep = 0, position = 13),
-                    SkbFun(name = SkbMenuMode.Settings.name, isKeep = 0, position = 14),
+                    
+                    // 将AI功能按钮添加到数据库中
+                    SkbFun(name = SkbMenuMode.AI.name, isKeep = 0, position = 13),
+                    
+                    SkbFun(name = SkbMenuMode.Custom.name, isKeep = 0, position = 14),
+                    SkbFun(name = SkbMenuMode.Settings.name, isKeep = 0, position = 15),
                 )
                 instance.skbFunDao().insertAll(skbFuns)
             }
