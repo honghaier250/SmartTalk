@@ -1,0 +1,45 @@
+# 构建输出
+/build/
+/*/build/
+/app/build/
+/yuyansdk/build/
+
+# Gradle 文件
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+local.properties
+
+# IDE 文件
+.idea/
+*.iml
+.DS_Store
+
+# 编译文件
+*.class
+*.dex
+*.apk
+*.ap_
+
+# 日志文件
+*.log
+
+# 原生库
+.externalNativeBuild/
+/*/libs/
+/*/obj/
+
+# 密钥文件
+*.jks
+*.keystore
+
+# 临时文件
+*.tmp
+*.bak
+*.swp
+
+# 项目特定文件
+docs/项目评估与AI功能集成可行性分析.md
+docs/DevelopmentSetup.md
+LICENSE
