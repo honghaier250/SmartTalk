@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yuyan.imemodule.R
 import com.yuyan.imemodule.adapter.AIFunctionAdapter
+import com.yuyan.imemodule.data.theme.ThemeManager
 import com.yuyan.imemodule.entity.AIFunctionItem
 import com.yuyan.imemodule.prefs.behavior.SkbMenuMode
 import com.yuyan.imemodule.view.keyboard.InputView
@@ -35,6 +36,7 @@ class AIContainer(context: Context, inputView: InputView) : BaseContainer(contex
             
             // 初始化标题和RecyclerView
             mTitleView = mAIFunctionsView.findViewById(R.id.tv_ai_functions_title)
+            mTitleView.setTextColor(ThemeManager.activeTheme.keyTextColor.toInt())
             mRecyclerView = mAIFunctionsView.findViewById(R.id.rv_ai_functions)
             
             // 设置网格布局，每行显示3个功能按钮
