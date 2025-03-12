@@ -11,6 +11,7 @@ import com.yuyan.imemodule.prefs.behavior.SymbolMode
 import com.yuyan.imemodule.singleton.EnvironmentSingleton
 import com.yuyan.imemodule.ui.utils.AppUtil
 import com.yuyan.imemodule.utils.KeyboardLoaderUtil
+import com.yuyan.imemodule.view.keyboard.container.AIContainer
 import com.yuyan.imemodule.view.keyboard.container.CandidatesContainer
 import com.yuyan.imemodule.view.keyboard.container.ClipBoardContainer
 import com.yuyan.imemodule.view.keyboard.container.SettingsContainer
@@ -140,6 +141,17 @@ fun onSettingsMenuClick(inputView: InputView, skbMenuMode: SkbMenuMode) {
         }
         SkbMenuMode.LockClipBoard -> {
             CustomConstant.lockClipBoardEnable = !CustomConstant.lockClipBoardEnable
+        }
+        SkbMenuMode.AI -> {
+            // 处理AI功能按钮点击事件
+            // 如果当前已经是AI容器，则切换回输入键盘
+            // 否则切换到AI功能视图
+            if (KeyboardManager.instance.currentContainer is AIContainer) {
+                KeyboardManager.instance.switchKeyboard(InputModeSwitcherManager.skbLayout)
+            } else {
+                KeyboardManager.instance.switchKeyboard(KeyboardManager.KeyboardType.AI)
+                inputView.updateCandidateBar()
+            }
         }
         else ->{}
     }

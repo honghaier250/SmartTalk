@@ -339,6 +339,21 @@ class CandidatesBar(context: Context?, attrs: AttributeSet?) : RelativeLayout(co
     }
 
     /**
+     * 显示AI功能
+     */
+    fun showAI() {
+        showViewVisibility(mCandidatesMenuContainer)
+        // 在AI功能界面显示的菜单项
+        mCandidatesMenuAdapter.items = listOf(
+            menuSkbFunsPreset[SkbMenuMode.AI]!!
+        )
+        activeCandNo = 0
+        mCandidatesAdapter.activeCandidates(activeCandNo)
+        mCandidatesAdapter.notifyChanged()
+        mCandidatesMenuAdapter.notifyChanged()
+    }
+    
+    /**
      * 选择花漾字
      */
     fun showFlowerTypeface() {

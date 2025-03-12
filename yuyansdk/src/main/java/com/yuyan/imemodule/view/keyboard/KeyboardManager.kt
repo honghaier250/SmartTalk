@@ -2,6 +2,7 @@ package com.yuyan.imemodule.view.keyboard
 
 import com.yuyan.imemodule.application.ImeSdkApplication
 import com.yuyan.imemodule.manager.InputModeSwitcherManager
+import com.yuyan.imemodule.view.keyboard.container.AIContainer
 import com.yuyan.imemodule.view.keyboard.container.BaseContainer
 import com.yuyan.imemodule.view.keyboard.container.CandidatesContainer
 import com.yuyan.imemodule.view.keyboard.container.ClipBoardContainer
@@ -19,7 +20,7 @@ import com.yuyan.imemodule.view.keyboard.container.T9TextContainer
  */
 class KeyboardManager {
     enum class KeyboardType {
-        T9, QWERTY, LX17, QWERTYABC, NUMBER, SYMBOL, SETTINGS, HANDWRITING, CANDIDATES, ClipBoard
+        T9, QWERTY, LX17, QWERTYABC, NUMBER, SYMBOL, SETTINGS, HANDWRITING, CANDIDATES, ClipBoard, AI
     }
     private lateinit var mInputView: InputView
     private lateinit var mKeyboardRootView: InputViewParent
@@ -66,6 +67,7 @@ class KeyboardManager {
                 KeyboardType.QWERTYABC -> QwertyContainer(ImeSdkApplication.context, mInputView, InputModeSwitcherManager.MASK_SKB_LAYOUT_QWERTY_ABC)
                 KeyboardType.LX17 -> QwertyContainer(ImeSdkApplication.context, mInputView, InputModeSwitcherManager.MASK_SKB_LAYOUT_LX17)
                 KeyboardType.ClipBoard -> ClipBoardContainer(ImeSdkApplication.context, mInputView)
+                KeyboardType.AI -> AIContainer(ImeSdkApplication.context, mInputView)
                 else ->  T9TextContainer(ImeSdkApplication.context, mInputView)
             }
             container.updateSkbLayout()

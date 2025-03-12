@@ -49,6 +49,7 @@ import com.yuyan.imemodule.view.CandidatesBar
 import com.yuyan.imemodule.view.ComposingView
 import com.yuyan.imemodule.view.EditPhrasesView
 import com.yuyan.imemodule.view.FullDisplayKeyboardBar
+import com.yuyan.imemodule.view.keyboard.container.AIContainer
 import com.yuyan.imemodule.view.keyboard.container.CandidatesContainer
 import com.yuyan.imemodule.view.keyboard.container.ClipBoardContainer
 import com.yuyan.imemodule.view.keyboard.container.SymbolContainer
@@ -604,6 +605,16 @@ class InputView(context: Context, service: ImeService) : LifecycleRelativeLayout
                 KeyboardManager.instance.switchKeyboard(InputModeSwitcherManager.skbLayout)
                 initView(context)
                 mAddPhrasesLayout.setExtraData(extra)
+            }
+            SkbMenuMode.AI -> {
+                // 如果当前已经是AI容器，则切换回输入键盘
+                // 否则切换到AI功能视图并更新候选栏
+                if (KeyboardManager.instance.currentContainer is AIContainer) {
+                    KeyboardManager.instance.switchKeyboard(InputModeSwitcherManager.skbLayout)
+                } else {
+                    KeyboardManager.instance.switchKeyboard(KeyboardManager.KeyboardType.AI)
+                    mSkbCandidatesBarView.showAI()
+                }
             }
             else ->onSettingsMenuClick(this, skbMenuMode)
         }
