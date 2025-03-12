@@ -109,6 +109,8 @@ class CandidatesMenuAdapter(context: Context?) : RecyclerView.Adapter<Candidates
             SkbMenuMode.LockClipBoard -> CustomConstant.lockClipBoardEnable
 
             // 添加AI功能的选中状态处理逻辑
+            // 这里设置为true表示AI按钮始终显示为选中状态
+            // 后续可根据实际AI功能状态进行调整
             SkbMenuMode.AI -> true
             
             else -> false
