@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:name="com.yuyan.BaseApplication"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
