@@ -343,10 +343,23 @@ class CandidatesBar(context: Context?, attrs: AttributeSet?) : RelativeLayout(co
      */
     fun showAI() {
         showViewVisibility(mCandidatesMenuContainer)
-        // 在AI功能界面显示的菜单项
-        mCandidatesMenuAdapter.items = listOf(
-            menuSkbFunsPreset[SkbMenuMode.AI]!!
-        )
+        // 获取当前的菜单项列表
+        val mFunItems: MutableList<SkbFunItem> = mutableListOf()
+        val barMenus = DataBaseKT.instance.skbFunDao().getALlBarMenu()
+        for (item in barMenus) {
+            val skbMenuMode = SkbMenuMode.decode(item.name)
+            val skbFunItem = menuSkbFunsPreset[skbMenuMode]
+            if (skbFunItem != null) {
+                mFunItems.add(skbFunItem)
+            }
+        }
+        // 确保AI按钮始终显示在列表中
+        if (!mFunItems.any { it.skbMenuMode == SkbMenuMode.AI }) {
+            menuSkbFunsPreset[SkbMenuMode.AI]?.let { aiFunItem ->
+                mFunItems.add(aiFunItem)
+            }
+        }
+        mCandidatesMenuAdapter.items = mFunItems
         activeCandNo = 0
         mCandidatesAdapter.activeCandidates(activeCandNo)
         mCandidatesAdapter.notifyChanged()
