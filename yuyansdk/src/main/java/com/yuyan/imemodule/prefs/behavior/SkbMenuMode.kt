@@ -36,7 +36,12 @@ enum class SkbMenuMode {
     Emoticon,
     LockClipBoard,
     
-    //添加AI功能的枚举值,这是实现AI功能入口的第一步 
+    /**
+     * AI功能的枚举值
+     * 用于在键盘顶部操作栏中显示AI功能入口
+     * 该枚举值与SkbFunData.kt中的菜单项定义相对应
+     * 在CandidatesBar.kt和CandidatesMenuAdapter.kt中被引用
+     */
     AI;
 
     companion object : ManagedPreference.StringLikeCodec<SkbMenuMode> {

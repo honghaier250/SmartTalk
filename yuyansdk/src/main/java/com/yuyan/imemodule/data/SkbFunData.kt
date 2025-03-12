@@ -6,7 +6,12 @@ import com.yuyan.imemodule.entity.SkbFunItem
 import com.yuyan.imemodule.prefs.behavior.SkbMenuMode
 
 val menuSkbFunsPreset: Map<SkbMenuMode, SkbFunItem> = hashMapOf(
-    // 添加AI功能的菜单项定义,这样AI功能才显示在键盘顶部操作栏中
+    /**
+     * AI功能的菜单项定义
+     * 定义了AI功能在键盘顶部操作栏中的显示名称、图标和对应的枚举值
+     * 这样AI功能才能显示在键盘顶部操作栏中
+     * 在CandidatesBar.kt中被引用，确保AI按钮在各种界面中都能显示
+     */
     SkbMenuMode.AI to SkbFunItem(ImeSdkApplication.context.getString(R.string.ai_function), R.drawable.ic_menu_ai, SkbMenuMode.AI),
     
     SkbMenuMode.Emojicon to SkbFunItem(ImeSdkApplication.context.getString(R.string.emoji_setting), R.drawable.ic_menu_emoji, SkbMenuMode.Emojicon),
