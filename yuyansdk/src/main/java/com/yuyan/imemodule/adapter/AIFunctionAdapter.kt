@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.yuyan.imemodule.R
 import com.yuyan.imemodule.entity.AIFunctionItem
+import com.yuyan.imemodule.data.theme.ThemeManager
 
 /**
  * AI功能适配器
@@ -48,7 +49,9 @@ class AIFunctionAdapter(private val context: Context) : RecyclerView.Adapter<AIF
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.nameTextView.text = item.name
+        holder.nameTextView.setTextColor(ThemeManager.activeTheme.keyTextColor.toInt())
         holder.iconImageView.setImageResource(item.iconResId)
+        holder.iconImageView.drawable?.setTint(ThemeManager.activeTheme.keyTextColor)
 
         // 设置点击事件
         holder.itemView.setOnClickListener { view ->
