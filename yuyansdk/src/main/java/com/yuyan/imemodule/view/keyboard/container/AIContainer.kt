@@ -121,6 +121,19 @@ class AIContainer(context: Context, inputView: InputView) : BaseContainer(contex
                     AIFunctionItem("非暴力沟通体", R.drawable.ic_menu_ai, 10),
                     AIFunctionItem("情感放大器", R.drawable.ic_menu_ai, 11)
                 )
+            ),
+            // 智能翻译维度
+            AIFunctionCategory(
+                name = "智能翻译维度",
+                iconResId = R.drawable.ic_menu_translate,
+                categoryType = 5,
+                functions = listOf(
+                    AIFunctionItem("英语翻译", R.drawable.ic_menu_ai, 12),
+                    AIFunctionItem("日语翻译", R.drawable.ic_menu_ai, 13),
+                    AIFunctionItem("韩语翻译", R.drawable.ic_menu_ai, 14),
+                    AIFunctionItem("法语翻译", R.drawable.ic_menu_ai, 15),
+                    AIFunctionItem("德语翻译", R.drawable.ic_menu_ai, 16)
+                )
             )
         )
         
