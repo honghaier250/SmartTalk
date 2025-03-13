@@ -13,6 +13,7 @@ data class AIFunctionCategory(
     val name: String,
     val iconResId: Int,
     val categoryType: Int,
-    val functions: List<AIFunctionItem>,
+    val functions: List<AIFunctionItem> = emptyList(),
+    val subCategories: List<AISubCategory> = emptyList(),
     var isExpanded: Boolean = false
 )
