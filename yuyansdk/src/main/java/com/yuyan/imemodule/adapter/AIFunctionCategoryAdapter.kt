@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yuyan.imemodule.R
 import com.yuyan.imemodule.data.theme.ThemeManager
@@ -58,13 +59,15 @@ class AIFunctionCategoryAdapter(private val context: Context) : RecyclerView.Ada
         holder.functionsRecyclerView.visibility = if (category.isExpanded) View.VISIBLE else View.GONE
         
         // 设置功能列表适配器
-        if (holder.functionsRecyclerView.adapter == null) {
-            val layoutManager = GridLayoutManager(context, 3)
+        if (category.functions.isNotEmpty()) {
+            // 确保每次都重新设置布局和适配器，以便正确显示当前分类的功能项
+            val layoutManager = GridLayoutManager(context, 4)
             holder.functionsRecyclerView.layoutManager = layoutManager
             
+            // 创建新的适配器并设置当前分类的功能项
             val adapter = AIFunctionAdapter(context)
             adapter.setData(category.functions)
-            adapter.setOnItemClickListener { _, view, functionPosition ->
+            adapter.setOnFunctionClickListener { _, view, functionPosition ->
                 onFunctionClickListener?.invoke(this, view, position, functionPosition)
             }
             holder.functionsRecyclerView.adapter = adapter

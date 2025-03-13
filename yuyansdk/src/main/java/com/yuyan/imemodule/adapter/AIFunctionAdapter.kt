@@ -17,7 +17,7 @@ import com.yuyan.imemodule.data.theme.ThemeManager
  */
 class AIFunctionAdapter(private val context: Context) : RecyclerView.Adapter<AIFunctionAdapter.ViewHolder>() {
     private var data: List<AIFunctionItem> = ArrayList()
-    private var onItemClickListener: ((adapter: RecyclerView.Adapter<*>, view: View?, position: Int) -> Unit)? = null
+    private var onFunctionClickListener: ((adapter: RecyclerView.Adapter<*>, view: View?, position: Int) -> Unit)? = null
 
     /**
      * 设置数据
@@ -35,10 +35,10 @@ class AIFunctionAdapter(private val context: Context) : RecyclerView.Adapter<AIF
     }
 
     /**
-     * 设置项目点击监听器
+     * 设置功能项点击监听器
      */
-    fun setOnItemClickListener(listener: (adapter: RecyclerView.Adapter<*>, view: View?, position: Int) -> Unit) {
-        this.onItemClickListener = listener
+    fun setOnFunctionClickListener(listener: (adapter: RecyclerView.Adapter<*>, view: View?, position: Int) -> Unit) {
+        this.onFunctionClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -55,7 +55,7 @@ class AIFunctionAdapter(private val context: Context) : RecyclerView.Adapter<AIF
 
         // 设置点击事件
         holder.itemView.setOnClickListener { view ->
-            onItemClickListener?.invoke(this, view, position)
+            onFunctionClickListener?.invoke(this, view, position)
         }
     }
 
