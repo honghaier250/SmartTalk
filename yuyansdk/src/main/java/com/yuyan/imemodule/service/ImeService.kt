@@ -23,15 +23,25 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import android.util.Log
 
 /**
  * Main class of the Pinyin input method. 输入法服务
  */
 class ImeService : InputMethodService() {
+    private val TAG = "ImeService"
     private var isWindowShown = false // 键盘窗口是否已显示
     private lateinit var mInputView: InputView
     private val onThemeChangeListener = OnThemeChangeListener { _: Theme? -> if (::mInputView.isInitialized) mInputView.updateTheme() }
     private val clipboardUpdateContent = getInstance().internal.clipboardUpdateContent
+    
+    // 跟踪最后提交的文本
+    var lastCommittedText: String? = null
+        private set
+    
+    // 跟踪当前编辑框中的文本
+    private var currentInputText: String? = null
+    
     private val clipboardUpdateContentListener = ManagedPreference.OnChangeListener<String> { _, value ->
         if(getInstance().clipboard.clipboardSuggestion.getValue()){
             if(value.isNotBlank()) {
@@ -54,11 +64,13 @@ class ImeService : InputMethodService() {
 
     override fun onCreateInputView(): View {
         mInputView = InputView(baseContext, this)
+        updateCurrentInputText()
         return mInputView
     }
 
     override fun onStartInputView(editorInfo: EditorInfo, restarting: Boolean) {
-        if (::mInputView.isInitialized)mInputView.onStartInputView(editorInfo, restarting)
+        if (::mInputView.isInitialized) mInputView.onStartInputView(editorInfo, restarting)
+        updateCurrentInputText()
     }
 
     override fun onDestroy() {
@@ -134,11 +146,70 @@ class ImeService : InputMethodService() {
         isWindowShown = true
         if (::mInputView.isInitialized) mInputView.onWindowShown()
         super.onWindowShown()
+        updateCurrentInputText()
     }
 
     override fun onWindowHidden() {
         isWindowShown = false
         if(::mInputView.isInitialized) mInputView.onWindowHidden()
         super.onWindowHidden()
+    }
+
+    /**
+     * 更新最后提交的文本
+     * 由于无法直接重写commitText方法，我们需要在其他地方跟踪文本提交
+     */
+    fun updateLastCommittedText(text: CharSequence?) {
+        if (text != null && text.isNotEmpty()) {
+            lastCommittedText = text.toString()
+            // 更新当前输入文本
+            updateCurrentInputText()
+            Log.d(TAG, "提交文本: $lastCommittedText, 当前输入文本: $currentInputText")
+        }
+    }
+    
+    /**
+     * 在输入开始时捕获当前编辑框中的文本
+     */
+    override fun onStartInput(attribute: EditorInfo?, restarting: Boolean) {
+        super.onStartInput(attribute, restarting)
+        updateCurrentInputText()
+    }
+    
+    /**
+     * 更新当前编辑框中的文本
+     */
+    private fun updateCurrentInputText() {
+        try {
+            // 尝试获取当前编辑框中的文本
+            val ic = currentInputConnection
+            if (ic != null) {
+                // 尝试获取整个文本字段的内容
+                val extractedText = ic.getExtractedText(android.view.inputmethod.ExtractedTextRequest(), 0)
+                if (extractedText != null && extractedText.text != null) {
+                    currentInputText = extractedText.text.toString()
+                    Log.d(TAG, "updateCurrentInputText: 从ExtractedText获取到文本: $currentInputText")
+                    return
+                }
+                
+                // 获取光标前的文本
+                val beforeText = ic.getTextBeforeCursor(2000, 0)?.toString() ?: ""
+                // 获取光标后的文本
+                val afterText = ic.getTextAfterCursor(2000, 0)?.toString() ?: ""
+                currentInputText = beforeText + afterText
+                Log.d(TAG, "updateCurrentInputText: 当前编辑框文本: $currentInputText")
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "获取当前编辑框文本失败", e)
+        }
+    }
+    
+    /**
+     * 获取当前编辑框中的文本
+     */
+    fun getCurrentInputText(): String? {
+        // 先尝试更新当前文本
+        updateCurrentInputText()
+        return currentInputText
     }
 }

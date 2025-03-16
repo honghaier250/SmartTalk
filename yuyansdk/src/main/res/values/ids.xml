@@ -4,4 +4,5 @@
     <item name="clipboard_adapter_top_tips" type="id"/>
     <item name="et_prefix_setting_key" type="id"/>
     <item name="et_prefix_setting_value" type="id"/>
+    <item name="ime_service_tag" type="id"/>
 </resources>
