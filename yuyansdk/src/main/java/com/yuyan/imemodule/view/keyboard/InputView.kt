@@ -116,6 +116,10 @@ class InputView(context: Context, service: ImeService) : LifecycleRelativeLayout
             addRule(ALIGN_BOTTOM, mSkbRoot.id)
             addRule(ALIGN_LEFT, mSkbRoot.id)
         })
+        
+        // 存储ImeService实例，以便其他组件可以访问
+        setTag(R.id.ime_service_tag, service)
+        
         initView(context)
     }
 
@@ -696,8 +700,13 @@ class InputView(context: Context, service: ImeService) : LifecycleRelativeLayout
      * 发送字符串给编辑框
      */
     private fun commitText(text: String) {
-        if(isAddPhrases) mAddPhrasesLayout.commitText(text)
-        else service.getCurrentInputConnection()?.commitText(StringUtils.converted2FlowerTypeface(text), 1)
+        if(isAddPhrases) {
+            mAddPhrasesLayout.commitText(text)
+        } else {
+            // 更新最后提交的文本
+            (service as? ImeService)?.updateLastCommittedText(text)
+            service.getCurrentInputConnection()?.commitText(StringUtils.converted2FlowerTypeface(text), 1)
+        }
     }
 
     /**
@@ -709,9 +718,15 @@ class InputView(context: Context, service: ImeService) : LifecycleRelativeLayout
         } else {
             val ic = service.getCurrentInputConnection()
             if(getInstance().input.symbolPairInput.getValue()) {
+                // 更新最后提交的文本
+                (service as? ImeService)?.updateLastCommittedText(text + SymbolPreset[text]!!)
                 ic?.commitText(text + SymbolPreset[text]!!, 1)
                 moveCursorPosition(KeyEvent.KEYCODE_DPAD_LEFT)
-            } else ic?.commitText(text, 1)
+            } else {
+                // 更新最后提交的文本
+                (service as? ImeService)?.updateLastCommittedText(text)
+                ic?.commitText(text, 1)
+            }
         }
     }
 
@@ -724,8 +739,12 @@ class InputView(context: Context, service: ImeService) : LifecycleRelativeLayout
             mAddPhrasesLayout.commitText(resultText)
         } else {
             val inputConnection = service.getCurrentInputConnection()
+            // 更新最后提交的文本
+            (service as? ImeService)?.updateLastCommittedText(resultText)
             inputConnection.commitText(StringUtils.converted2FlowerTypeface(resultText), 1)
             if (InputModeSwitcherManager.isEnglish && DecodingInfo.isEngineFinish && getInstance().input.abcSpaceAuto.getValue() && StringUtils.isEnglishWord(resultText)) {
+                // 更新最后提交的文本（空格）
+                (service as? ImeService)?.updateLastCommittedText(" ")
                 inputConnection.commitText(" ", 1)
             }
         }
