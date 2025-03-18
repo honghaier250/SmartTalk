@@ -31,10 +31,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("devdroid.jks")
-            storePassword "devdroid110"
-            keyAlias "devdroid"
-            keyPassword "devdroid110"
+            storeFile file("smarttalk.jks")
+            storePassword "smarttalk"
+            keyAlias "smarttalk"
+            keyPassword "smarttalk"
             v1SigningEnabled true
             v2SigningEnabled true
         }
@@ -43,7 +43,7 @@ android {
     //多渠道打包
     flavorDimensions = ["default"]
     productFlavors {
-        publishNonDefault true //唯一的不同
+        publishNonDefault true
         online {
             dimension "default"
             applicationIdSuffix  ".online"
@@ -70,7 +70,7 @@ android {
         }
 
     }
-    //    第三方库使用java1.8
+
     compileOptions {
         sourceCompatibility 17
         targetCompatibility 17
