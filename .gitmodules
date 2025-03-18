@@ -1,3 +1,4 @@
 [submodule "yuyansdk"]
 	path = yuyansdk
-	url = git@github.com:gurecn/yuyansdk.git
+	url = https://github.com/honghaier250/yuyansdk.git
+	branch = custom/zhiyan
