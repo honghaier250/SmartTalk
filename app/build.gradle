@@ -38,9 +38,6 @@ android {
             v1SigningEnabled true
             v2SigningEnabled true
         }
-        debug {
-            // 使用Android默认的debug签名
-        }
     }
 
     //多渠道打包
@@ -69,7 +66,7 @@ android {
 
         debug {
             applicationIdSuffix ".debug"
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
 
     }
