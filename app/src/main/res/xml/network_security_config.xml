@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- 后端服务器部署IP，可根据实际部署环境扩展添加更多服务器地址 -->
+        <domain includeSubdomains="true">119.3.217.132</domain>
+    </domain-config>
+</network-security-config>
