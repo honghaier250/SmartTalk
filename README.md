@@ -4,7 +4,7 @@
 
 > 注：本项目目前处于积极开发阶段，欢迎感兴趣的开发者加入！
 
-SmartTalk（智言）输入法是一个计划基于[语燕输入法](https://github.com/gurecn/YuyanIme)开发的智能输入法项目。项目目标是通过集成先进的AI技术，在保持原有输入法轻快、简洁特性的基础上，提供更智能、更个性化的输入体验。
+SmartTalk（智言）输入法是一个智能输入法项目，项目目标是通过集成先进的AI技术，将传统输入法从“工具”升级为“教练”，实现功能融合与创新，让用户秒变沟通艺术家。
 
 ## 💡 项目愿景
 
@@ -17,6 +17,11 @@ SmartTalk（智言）输入法是一个计划基于[语燕输入法](https://git
 - ✅ 人设养成系统：N+预制人设风格，0.1秒变身「霸道总裁/知性博主/学术大牛」
 - ✅ 领域专家模式：精准调取法律/医学等专业语料库，商务咨询对答如流
 - ✅ 文化语言伴侣：N+语种实时互译，文化典故一键溯源，破除文化屏障解锁文明通识
+
+
+## 💡 效果演示
+[![智言输入法](docs/assets/demo.jpg)](https://www.bilibili.com/video/BV1bVZvYPEme "AI高情商输入法效果演示")
+
 
 ## 📋 版本规划
 
@@ -97,7 +102,7 @@ SmartTalk（智言）输入法是一个计划基于[语燕输入法](https://git
 
 - main分支：**当前的活跃开发分支**
 - v0.1分支：基于自研输入法做的原型验证
-- master分支：结合语燕输入法实现AI，但存在候选词不显示问题
+- master分支：结合传统输入法实现AI，但存在候选词不显示问题
 
 ## 贡献指南
 
@@ -119,13 +124,6 @@ SmartTalk（智言）输入法是一个计划基于[语燕输入法](https://git
 - 隐私选项：用户可自主控制AI功能的开启状态
 - 透明说明：清晰的隐私政策说明
 
-## 致谢
-
-- [语燕输入法](https://github.com/gurecn/YuyanIme)：本项目基于语燕输入法开发，感谢其优秀的代码贡献
-- [RIME](http://rime.im)：强大的输入法引擎
-- [雾凇拼音方案](https://github.com/iDvel/rime-ice)：优秀的输入方案
-- [白霜词库](https://github.com/gaboolic/rime-frost)：高质量词库支持
-
 ## 开源协议
 
-本项目遵循与语燕输入法相同的开源协议。
+本项目遵循[GNU Lesser General Public License v2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html)开源协议。
